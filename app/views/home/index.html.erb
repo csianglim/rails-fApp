@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>fApp: Finance App | UBC Chem-E-Car</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    <link href="https://fonts.googleapis.com/css?family=Merriweather" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <style>
+      body {
+          background: #2b5876; /* fallback for old browsers */
+          background: -webkit-linear-gradient(to left, #2b5876 , #4e4376); /* Chrome 10-25, Safari 5.1-6 */
+          background: linear-gradient(to left, #2b5876 , #4e4376); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+      }
+      a{
+       color: #FFFFFF !important;
+       display: inline-block;
+       border:1px solid #BFBFBF;
+       border-radius: 30px;
+       -webkit-border-radius: 30px;
+       -moz-border-radius: 30px;
+       width: auto;
+       height: auto;
+       padding: 10px 40px;
+       background: rgba(255,255,255,0.1);
+       text-decoration:none;
+       margin-left: 30px;
+       margin-right: 30px;
+      }
+      a:hover, a:active{
+       border:1px solid #BFBFBF;
+       color: #FFFFFF;
+       text-decoration:none;
+       background: rgba(255,255,255,0.1);
+      }
+      .center-block {
+          font-family: 'Merriweather', serif;
+          text-align: center;
+          color: white;
+          border-radius: 1em;
+          padding: 1em;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          margin-right: -50%;
+          transform: translate(-50%, -50%);
+          border: 2px solid white;
+          border-radius: 5px;
+          padding: 40px;
+      }
+    </style>
+  </head>
+
+  <body>
+  <div class="center-block">
+    <h1><b>fApp</b></h1>
+    <p><em>Finance App <i class="fa fa-heart" aria-hidden="true"></i> UBC Chem-E-Car</em></p>
+    <% if current_user.nil? %>
+      <%= link_to "Sign in with Facebook", user_facebook_omniauth_authorize_path %>
+    	<!-- <%= link_to new_user_session_path, class: 'login-button' do %>Sign in with Email<% end %> -->
+    <% else %>
+    	<%= link_to rails_admin_path, class: 'login-button' do %>Control Panel<% end %>
+    <% end %>
+  </div>
+  </body>
+</html>
