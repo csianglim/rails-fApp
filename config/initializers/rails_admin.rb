@@ -31,11 +31,11 @@ RailsAdmin.config do |config|
     index                         # mandatory
     new
     export
-    bulk_delete
+    # bulk_delete
     show
     edit
-    delete
-    show_in_app
+    # delete
+    # show_in_app
     state
     history_index
     history_show
@@ -147,7 +147,11 @@ RailsAdmin.config do |config|
     config.model Order do
       list do
         field :id
-        field :name
+        field :name do
+          pretty_value do
+            %{<a target="_blank" href="#{bindings[:object].link}">#{bindings[:object].name}</a>}.html_safe
+          end
+        end
         # field :user_name do
         #   label "Requested By"
         # end
@@ -164,11 +168,12 @@ RailsAdmin.config do |config|
         field :aasm_state, :state do
           label "State"
         end
-        field :link do
-          formatted_value do
-            bindings[:view].tag(:a, href: bindings[:object].link, target:"_blank") << "Link"
-          end
-        end
+        field :comments
+        # field :link do
+        #   formatted_value do
+        #     bindings[:view].tag(:a, href: bindings[:object].link, target:"_blank") << "Link"
+        #   end
+        # end
         # field :updated_at do
         #   date_format :short
         #   label "Last Updated"
